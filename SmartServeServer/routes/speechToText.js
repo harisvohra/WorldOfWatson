@@ -10,10 +10,22 @@ var watson = require('watson-developer-cloud/speech-to-text/v1');
 var fs = require('fs');	
 var formidable = require('formidable');
 
+var username = '';
+var password = '';
+
+if (process.env.VCAP_SERVICES) {
+	var vcap = JSON.parse(process.env.VCAP_SERVICES);
+	password = vcap.speech_to_text[0].credentials.password;
+	username = vcap.speech_to_text[0].credentials.username;
+} else {
+	password = appConfig['speechToText'].password;
+	username = appConfig['speechToText'].username;
+}
+
 //Initialize core object to hit Service deployed in BlueMix.
 var speech_to_text = new watson({
-  username: appConfig['speechToText'].username,
-  password: appConfig['speechToText'].password
+  username: username,
+  password: password
 });
 
 //Get Handle of Router
@@ -24,6 +36,8 @@ var router = express.Router();
  * for Speech To Text API.
  */
 router.post('/', function(req, res, next) {
+	res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
   	//Supported Content Type
 	var params = {
   		content_type: 'audio/wav'

@@ -7,15 +7,26 @@
 var express 	= require('express');
 var appConfig	= require('../config.json');
 var watson  	= require('watson-developer-cloud/tone-analyzer/v3');
-var cfenv = require("cfenv");
-var services = cfenv.getAppEnv().getServices();
+
+
+var username = '';
+var password = '';
+
+if (process.env.VCAP_SERVICES) {
+	var vcap = JSON.parse(process.env.VCAP_SERVICES);
+	password = vcap.tone_analyzer[0].credentials.password;
+	username = vcap.tone_analyzer[0].credentials.username;
+} else {
+	password = appConfig['toneAnalysis'].password;
+	username = appConfig['toneAnalysis'].username;
+}
 
 //Get Handle of Router
 var router = express.Router();
 
 var tone_analyzer = new watson({
-  username: appConfig['toneAnalysis'].username,
-  password: appConfig['toneAnalysis'].password,
+  username: username,
+  password: password,
   version_date:appConfig['toneAnalysis'].version_date
 });
 
@@ -25,6 +36,8 @@ var tone_analyzer = new watson({
  */
 router.post('/', function(req, res, next) {		
    var text = req.body.text;
+   res.header("Access-Control-Allow-Origin", "*");
+   res.header("Access-Control-Allow-Headers", "X-Requested-With");
    tone_analyzer.tone({ text: text },
 	function(err, tone) {
 	    if (err)

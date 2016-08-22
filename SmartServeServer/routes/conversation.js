@@ -11,11 +11,25 @@ var watson = require('watson-developer-cloud/document-conversion/v1');
 //Get Handle of Router
 var router = express.Router();
 
+var username = '';
+var password = '';
+
+if (process.env.VCAP_SERVICES) {
+	var vcap = JSON.parse(process.env.VCAP_SERVICES);
+	password = vcap.tone_analyzer[0].credentials.password;
+	username = vcap.tone_analyzer[0].credentials.username;
+} else {
+	password = appConfig['toneAnalysis'].password;
+	username = appConfig['toneAnalysis'].username;
+}
+
 /**
  * This function intercepts any incoming POST request
  * for Conversation API.
  */
 router.post('/', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
   //TODO - Logic Needs to be placed Here
   var text = req.body.text;
   res.send('You passed '+text+'. Unfortunately this Service is not implemented yet!');

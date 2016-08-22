@@ -12,10 +12,22 @@ var fs 			= require('fs');
 //Get Handle of Router
 var router = express.Router();
 
+var username = '';
+var password = '';
+
+if (process.env.VCAP_SERVICES) {
+	var vcap = JSON.parse(process.env.VCAP_SERVICES);
+	password = vcap.text_to_speech[0].credentials.password;
+	username = vcap.text_to_speech[0].credentials.username;
+} else {
+	password = appConfig['textToSpeech'].password;
+	username = appConfig['textToSpeech'].username;
+}
+
 //Initialize core object to hit Service deployed in BlueMix.
 var text_to_speech = new watson({
-  username: appConfig['textToSpeech'].username,
-  password: appConfig['textToSpeech'].password
+  username: username,
+  password: password
 });
 
 
@@ -24,6 +36,9 @@ var text_to_speech = new watson({
  * for Text To Speech API.
  */
 router.post('/', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  
   var text = req.body.text;
   
   var params = {
