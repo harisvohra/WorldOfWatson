@@ -1,0 +1,72 @@
+
+<html>
+
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>	
+<body>
+
+<h2>Service Tester Utility</h2>
+
+<hr/>
+
+<h4><u>Speech To Text Tester</u></h4>
+<form method="post" action="/speechToText" enctype="multipart/form-data" target="frame">
+	<input type="file" name="speech">
+	<input type="submit" value="Speech To Text" onclick="javascript:showFrame()">
+</form>
+<br/>
+<iframe id="frame" name="frame" style="display:none">
+
+</iframe>
+
+
+
+
+
+<hr/>
+
+<h4><u>Text To speech Tester</u></h4>
+<input type="text" name="textToSpeech" id="textToSpeech" placeholder="Input your text here" />
+<input type='button' value='Text to Speech' onclick="javascript:sendText('textToSpeech')">
+<br/><span id="textToSpeechOutput"></span>
+<hr/>
+
+<h4><u>Tone Analysis Tester</u></h4>
+<input type="text" name="toneAnalysis" id="toneAnalysis" placeholder="Input your text here"/>
+<input type='button' value='Tone Analysis' onclick="javascript:sendText('toneAnalysis')">
+<br/><span id="toneAnalysisOutput"></span>
+
+
+<hr/>
+
+<h4><u>Conversation Tester</u></h4>
+<input type="text" name="conversation" id="conversation" placeholder="Input your text here"/>
+<input type='button' value='Conversation' onclick="javascript:sendText('conversation')">
+<br/><span id="conversationOutput"></span>
+
+
+
+<script>
+
+
+
+function sendText(id){
+	var text = $('#'+id).val();
+	$('#'+id+'Output').html("Loading...");	
+    $.post("/"+id,{ 
+        text: text
+    },
+    function(data, status){
+    	$('#'+id+'Output').html("<b>Data: </b>" + data + "<br/><b>Status: </b>" + status);            	
+    });
+}
+
+function showFrame(){
+	$('#frame').html('Loading...');
+	$('#frame').show();
+}
+
+</script>
+</body>
+</html>

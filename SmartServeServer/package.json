@@ -1,0 +1,45 @@
+{
+  "name": "SmartServeServer",
+  "author": "Prolifics",
+  "version": "1.0.0",
+  "engines": {
+    "node": "4.4.6"
+  },
+  "dependencies": {
+    "body-parser": "*",
+    "express": "4.*",
+    "formidable": "*",
+    "ibmbluemix": "*",
+    "ibmdata": "*",
+    "string": "^3.3.0",
+    "watson-developer-cloud": "*",
+    "extend": "~3.0.0",
+    "cookie": "~0.3.1",
+    "csv-stringify": "~1.0.2",
+    "is-in-browser": "^1.0.1",
+    "isstream": "~0.1.2",
+    "object.omit": "~2.0.0",
+    "object.pick": "~1.1.1",
+    "request": "~2.74.0",
+    "solr-client": "~0.6.0",
+    "vcap_services": "~0.2.0",
+    "websocket": "~1.0.22"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-simple-mocha": "0.4.0",
+    "load-grunt-tasks": "~0.3.0",
+    "time-grunt": "~0.2.9",
+    "chai": "*",
+    "mocha": "*",
+    "when": "*",
+    "request": "*",
+    "assert": "*"
+  },
+  "repository": {},
+  "scripts": {
+    "start": "node app.js"
+  },
+  "description": "Smart Serve Server which interacts with Watson Services.",  
+  "main": "app.js"
+}

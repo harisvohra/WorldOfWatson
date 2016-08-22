@@ -1,0 +1,28 @@
+{
+  "app":{
+    "applicationRoute":"http://smartserve.mybluemix.net",
+    "applicationId":"f483e180-513b-484f-a214-f5f101c34470"
+  },
+
+  "speechToText": {
+    "username": "8d32576b-bc4a-49e8-aecd-547e1d489e8a",
+    "password":"PSrRGhlNQEzm"
+  },
+
+  "textToSpeech": {
+     "username": "3ffb5d91-7b73-4380-bed1-12ecb4f7165f",
+     "password":"cHO7uXXzDTnu"
+  },
+
+  "toneAnalysis": {
+    "username": "3b9ab659-94ee-406a-bc34-29f310403fa7",
+    "password":"SXKsjdgXG3WO",
+    "version_date": "2016-05-19"
+  },
+
+  "conversation": {
+    "username": "TODO",
+    "password":"TODO",
+    "version_date": "TODO"
+  }
+}
