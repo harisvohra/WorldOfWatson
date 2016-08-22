@@ -1,28 +1,28 @@
 {
   "app":{
-    "applicationRoute":"http://smartserve.mybluemix.net",
-    "applicationId":"f483e180-513b-484f-a214-f5f101c34470"
+    "applicationRoute":"http://smartserveserver.au-syd.mybluemix.net/",
+    "applicationId":"25537ba0-ba2b-42dd-962e-717456c9e010"
   },
 
   "speechToText": {
-    "username": "8d32576b-bc4a-49e8-aecd-547e1d489e8a",
-    "password":"PSrRGhlNQEzm"
+    "username": "8ecc392a-4167-4832-badc-3126b0d2ef38",
+    "password":"dwM3k6ALpixl"
   },
 
   "textToSpeech": {
-     "username": "3ffb5d91-7b73-4380-bed1-12ecb4f7165f",
-     "password":"cHO7uXXzDTnu"
+     "username": "ed41909c-a7fb-484f-9583-190c5cdce691",
+     "password":"whUbYikNlPUM"
   },
 
   "toneAnalysis": {
-    "username": "3b9ab659-94ee-406a-bc34-29f310403fa7",
-    "password":"SXKsjdgXG3WO",
+    "username": "1f273c41-8287-4f16-9cfe-3dffdb0c7bf7",
+    "password":"SPaPpt8MZRMT",
     "version_date": "2016-05-19"
   },
 
   "conversation": {
-    "username": "TODO",
-    "password":"TODO",
-    "version_date": "TODO"
+    "username": "08d4288f-d4ee-491b-8fec-66ee62506c28",
+    "password":"RZQQ5UXxiwbf",
+    "version_date": "2016-07-11"
   }
 }

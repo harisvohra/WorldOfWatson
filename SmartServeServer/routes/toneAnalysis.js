@@ -7,6 +7,8 @@
 var express 	= require('express');
 var appConfig	= require('../config.json');
 var watson  	= require('watson-developer-cloud/tone-analyzer/v3');
+var cfenv = require("cfenv");
+var services = cfenv.getAppEnv().getServices();
 
 //Get Handle of Router
 var router = express.Router();
@@ -21,14 +23,15 @@ var tone_analyzer = new watson({
  * This function intercepts any incoming POST request
  * for Tone Analysis API.
  */
-router.post('/', function(req, res, next) {
+router.post('/', function(req, res, next) {		
    var text = req.body.text;
    tone_analyzer.tone({ text: text },
 	function(err, tone) {
 	    if (err)
 	      res.send(err);
-	    else
+	    else {	
 	     res.send(JSON.stringify(tone, null, 2));
+		}
 	});
 });
 
