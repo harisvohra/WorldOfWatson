@@ -1,0 +1,53 @@
+@charset "utf-8";
+
+/* CSS Document */
+/* ------------------ Deafult Reset CSS Start--------------------------- */
+h1,h2,h3,h4,h4,h5,h6,span,p,ul,li,dl,dt,dd,img,a{ margin:0px; padding:0px; border:none;}
+
+.fleft{ float:left;}
+.fright{ float:right;}
+.cboth{ clear:both;}
+.cleft{ clear:left;}
+.cright{ clear:right;}
+.topMargin{ margin-top:10px;}
+.topMarginDbl{ margin-top:20px;}
+
+.close{ display:none;}
+.open{ display:block;}
+
+h1{ font: bold 24px Arial, Helvetica, sans-serif; color:#ffffff; padding:0px; margin:0px 0px 10px 0px;}
+h2{ font: bold 20px Arial, Helvetica, sans-serif; color:#e1e325; padding:0px; margin:0px 0px 10px 0px;}
+a{ color:#227cab; text-decoration:none;}
+a:hover{ color:#e68c16; text-decoration:underline;}
+
+body{ color:#333333; margin:0px; padding:0px; font:normal 13px Verdana, Arial, Helvetica, sans-serif; background:#ffffff;}
+html{ color:#333333; margin:0px; padding:0px; font:normal 13px Verdana, Arial, Helvetica, sans-serif;}
+
+/* ------------------ Deafult Reset CSS Ends -------------------- */
+/****************************************************************************************/
+/* ------------------ Main Body CSS Start -------------------- */
+.wrapper { width:100%; height:auto; padding:0px; margin:0px;}
+
+.main-container{ width:300px; min-height:400px; margin:0px auto; padding:10px; background:#2b7fbe;}
+.logo-home{ width:100%; height:auto; padding:0px; margin:10px 0px 10px 0px; text-align:center;}
+.logo-inner{ width:100%; height:auto; padding:0px; margin:10px 0px 100px 0px; text-align:center;}
+p.poweredby{  width:100%; height:auto; text-align:center; font:bold 15px Arial, Helvetica, sans-serif; color:#FFFFFF; margin:10px 0px 100px 0px;}
+
+.brand-logo{ width:100%; height:auto; padding:0px; margin:30px 0px 30px; text-align:center;}
+.box-container{ width:93%; height:auto; padding:5px 10px; margin:0px 0px 20px; background:#FFFFFF; 	border: 1px solid #ffffff; border-radius: 20px;}
+.box-container input.full-box{ width:100%; height:auto; padding:5px 0px; margin:0px; border:none; text-align:center; font:normal 14px Verdana, Arial, Helvetica, sans-serif;}
+.box-container input.half-box{ width:85%; height:auto; padding:5px 0px; margin:0px; border:none; text-align:left; font:normal 14px Verdana, Arial, Helvetica, sans-serif;}
+.box-container textarea.full-box{ width:100%; height:100px; padding:5px 0px; margin:0px; border:none; text-align:left; font:normal 14px Verdana, Arial, Helvetica, sans-serif;}
+.box-container a.mike{ width:20px; height:25px; float:right; padding:0px; margin:0px; background:url(../images/mike-black.png) no-repeat left top;}
+.box-container a.mike:hover{ background:url(../images/mike-green.png) no-repeat left top;}
+.button-container{ width:100%; height:auto; padding:0px; margin:0px 0px 20px; text-align:center!important;}
+.button-container input.my-button{ width:auto; height:auto; padding:8px 10px; margin:0px; background:url(../images/button-bg.jpg) repeat-x left top; border: 1px solid #ea4c89; border-radius: 20px; font:bold 14px Verdana, Arial, Helvetica, sans-serif; color:#FFFFFF; cursor:pointer;}
+.button-container input.my-button:hover{background:url(../images/button-bg-hover.jpg) repeat-x left top;}
+
+.box-feedback{ width:100%; height:auto; padding:0px; margin:0px; text-align:center;}
+.box-feedback .star-box{ width:100%; height:auto; padding:0px; margin:0px; text-align:center;}
+.box-feedback .star-box a{ width:45px; height:42px; float:left; padding:0px; margin:10 5px 20px 9px; background:url(../images/start-stroke.png) no-repeat left top;}
+.box-feedback .star-box a:hover{ background:url(../images/start-fill.png) no-repeat left top;}
+.box-feedback .star-box a.active{ background:url(../images/start-fill.png) no-repeat left top;}
+/* ------------------ Main Body CSS Ends -------------------- */
+

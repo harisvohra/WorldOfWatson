@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>-:: SmartServe ::-</title>
+<meta name="description" content="GBM CMS">
+<meta name="keywords" content="GBM CMS" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	
+		$("#my-button").click(function(){
+			if($("#mike-box").is(":visible")){
+				$("#mike-box").hide();
+			}
+			else{
+				$("#mike-box").show();
+				}
+		});
+   
+});
+</script>
+</head>
+<body>
+<div class="wrapper">
+  <div class="main-container">
+    <div class="logo-inner"><img src="images/logo.png" alt="SmartServe" title="SmartServe"></div>
+    <div class="box-container">
+      <input name="" type="text" placeholder="Enter Your Name Here" class="full-box">
+    </div>
+    <div class="button-container">
+      <input type="submit" value="Start Conversation" class="my-button"  name="my-button" id="my-button">
+    </div>
+    <div class="box-container" id="mike-box" style="display:none;">
+      <input name="" type="text" placeholder="What will be my Loan EMI?" class="half-box">
+      <a href="#" title="" class="mike"></a> </div>
+  </div>
+</div>
+</body>
+</html>
