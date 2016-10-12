@@ -28,7 +28,7 @@
 
 <h4><u>Text To speech Tester</u></h4>
 <input type="text" name="textToSpeech" id="textToSpeech" placeholder="Input your text here" />
-<input type='button' value='Text to Speech' onclick="javascript:sendText('textToSpeech')">
+<input type='button' value='Text to Speech' onclick="javascript:textToSpeech('textToSpeech')">
 <br/><span id="textToSpeechOutput"></span>
 <hr/>
 
@@ -42,15 +42,11 @@
 
 <h4><u>Conversation Tester</u></h4>
 <input type="text" name="conversation" id="conversation" placeholder="Input your text here"/>
-<input type='button' value='Conversation' onclick="javascript:sendText('conversation')">
+<input type='button' value='Conversation' onclick="javascript:replyConversation('conversation')">
 <br/><span id="conversationOutput"></span>
 
 
-
 <script>
-
-
-
 function sendText(id){
 	var text = $('#'+id).val();
 	$('#'+id+'Output').html("Loading...");	
@@ -62,10 +58,62 @@ function sendText(id){
     });
 }
 
+function textToSpeech(id){
+	var text = $('#'+id).val();
+	$('#'+id+'Output').html("Loading...");	
+    $.post("/"+id,{ 
+        text: text
+    },
+    function(data, status){
+    	$('#'+id+'Output').html("<b>Data: </b>" + data + "<br/><b>Status: </b>" + status);            	
+    });
+}
+
+var context = {};
+
+function startConversation() {
+	var text = '';
+    $.post("/conversation",{ 
+        text: text
+    },
+    function(data, status){
+		console.log(data);
+		console.log(status);
+		var result = JSON.parse(data);
+    	$('#conversationOutput').html("System : " + result.output.text + "<br/>");   
+		context = result.context;	
+    });
+}
+
+function replyConversation(id) {
+	var text = $('#'+id).val();
+	$('#conversationOutput').append("You : "+ text + "<br/>");
+    $.post("/"+id,{ 
+        text: text,
+		context: context
+    },
+    function(data, status){
+    	var result = JSON.parse(data);
+		
+		var replyText = '';
+		
+		$.each(result.output.text, function (index, value) {
+			replyText += ' ' + value;
+		});
+		
+    	$('#conversationOutput').append("System : " + replyText + "<br/>");   
+		context = result.context;		
+    });
+}
+
 function showFrame(){
 	$('#frame').html('Loading...');
 	$('#frame').show();
 }
+
+$( document ).ready(function() {
+  startConversation();
+});
 
 </script>
 </body>

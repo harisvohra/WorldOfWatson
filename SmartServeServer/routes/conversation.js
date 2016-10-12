@@ -6,7 +6,7 @@
  //Import Dependencies
 var express = require('express');
 var appConfig	= require('../config.json');
-var watson = require('watson-developer-cloud/document-conversion/v1');
+var watson = require('watson-developer-cloud');
 
 //Get Handle of Router
 var router = express.Router();
@@ -16,12 +16,19 @@ var password = '';
 
 if (process.env.VCAP_SERVICES) {
 	var vcap = JSON.parse(process.env.VCAP_SERVICES);
-	password = vcap.tone_analyzer[0].credentials.password;
-	username = vcap.tone_analyzer[0].credentials.username;
+	password = vcap.conversation[0].credentials.password;
+	username = vcap.conversation[0].credentials.username;
 } else {
-	password = appConfig['toneAnalysis'].password;
-	username = appConfig['toneAnalysis'].username;
+	password = appConfig['conversation'].password;
+	username = appConfig['conversation'].username;
 }
+
+var conversation = watson.conversation({
+  username: username,
+  password: password,
+  version: 'v1',
+  version_date: '2016-07-11'
+});
 
 /**
  * This function intercepts any incoming POST request
@@ -30,9 +37,28 @@ if (process.env.VCAP_SERVICES) {
 router.post('/', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  //TODO - Logic Needs to be placed Here
   var text = req.body.text;
-  res.send('You passed '+text+'. Unfortunately this Service is not implemented yet!');
+  var context = {};
+  if (req.body.context && text.length > 0) {
+	  context = req.body.context;
+  }
+  
+  console.log("Request text : " + text + ", context : " + JSON.stringify(context));
+  
+  conversation.message({
+	workspace_id: appConfig['conversation'].workspace_id,
+	input: {'text': text},
+	context: context
+  },  function(err, response) {
+	 if (err) {
+		console.log('error:', err);
+		res.send(err);
+	}
+	else {
+		console.log(JSON.stringify(response, null, 2));
+		res.send(JSON.stringify(response, null, 2));
+	}	
+  });
 });
 
 
